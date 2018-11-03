@@ -1,0 +1,18 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    margin: 8px;
+}
+
+.filterButton{
+ width:128px;
+ height:32px;
+ background-color: #EA7F28; 
+ float: right;
+ color: white;
+ margin-right: 0px;
+}
+.filterButtonClicked{
+    background-color: #D37324; 
+    float: right;
+    margin-right: 0px;
+}
