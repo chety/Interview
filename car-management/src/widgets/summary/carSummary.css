@@ -1,0 +1,14 @@
+#wrapper {
+    display: flex;
+  }
+  #left {
+    flex: 0 0 20%;
+  }
+  #right {
+    flex: 1;
+  }
+a{
+  color: #EA7F28;
+  text-decoration: none;
+}
+  
