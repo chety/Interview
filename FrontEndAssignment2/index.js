@@ -123,8 +123,7 @@ $(document).ready(function() {
         cachedMovies = cachedMovies.filter(m => m.key !== movieToRemoveKey);
         localStorage.setItem('movies-db', JSON.stringify(cachedMovies));
 
-        let activeMovies = window.movies;
-        activeMovies = activeMovies.filter(m => m.key !== movieToRemoveKey);
-        renderResult(activeMovies);
+        window.movies = window.movies.filter(m => m.key !== movieToRemoveKey);
+        renderResult(window.movies);
     });
 });
