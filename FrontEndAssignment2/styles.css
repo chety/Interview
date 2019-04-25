@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
 
 @font-face {
@@ -76,13 +77,6 @@ body {
     float: right;
 }
 
-.remove table {
-    width: 100%;
-    height: 100%;
-    height: 230px;
-    border-color: black;
-}
-
 .remove button {
     min-width: 100%;
     color: white;
@@ -94,8 +88,18 @@ body {
     height: 30px;
 }
 
-table td {
-    border-color: black;
+#search {
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #758ca6;
+    height: 30px;
+    width: 40%;
+}
+#movie-name {
+    height: 30px;
+    border-radius: 5px;
+    width: 50%;
 }
 
 .empty {
