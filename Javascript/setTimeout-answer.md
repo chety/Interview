@@ -45,3 +45,5 @@ for(var i = 0; i<5;i++){
     })(i);
 }
 ```
+
+[For var/let/const variables,execution context and scope please visit](https://medium.com/front-end-weekly/es6-cool-stuffs-var-let-and-const-in-depth-24512e593268 "Front-end-weekly")
