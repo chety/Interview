@@ -1,0 +1,4 @@
+- .NET Framework is a software development platform. We have to install .net framework to execute c# applications. 
+- When we develop programs, some utilities like File, Math ...etc  all provided by the .NET Framework
+- When we execute our C#/Visual Basic/F# programs, the corresponding compiler converts source code to the Common Intermediate Language(CIL)
+- After CIL , this code is converted to the machine language by the Common Language Runtime(CLR)
