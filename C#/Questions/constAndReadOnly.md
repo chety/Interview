@@ -7,4 +7,30 @@
 - You can initialize a readonly variable in _constructor_. **Run Time Checking**
 - You can access a readonly variable via _class object instance_. 
 
+## Code Samples
+```c#
+   class Math
+    {
+        public const double PI = 3.14;
+        public readonly int KDV;
+
+        public Math()
+        {
+            KDV = 20;
+        }
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Math.PI);
+            Console.WriteLine(new Math().KDV);
+
+            Console.ReadLine();
+        }
+    } 
+    
+    
+```
 
