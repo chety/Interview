@@ -14,7 +14,41 @@ Object.getPrototypeOf(anotherObj) === obj; // ->true
 //the object's [[ProtoType]] chain It will stop when property is found or 
 //prototype chain is ended which is [[Object.ProtoType]]
 console.log(anotherObj.a); //->23
+
+const obj1 = {}
+const obj2 = Object.create(obj1);
+// Simply: does `obj1` appear anywhere in
+// `obj2`s [[Prototype]] chain?
+obj1.isPrototypeOf(obj2); //true
+
 ```
+- In browsers there are a special `__proto__`(_dunder proto_) property(**actually a getter/setter**) to access an object `[[ProtoType]]`.
+We can mimic this behaviour like below.
+```javascript
+Object.defineProperty(f,"___proto__",{
+    get(){
+        return Object.getPrototypeOf(this);
+    },
+    set(_proto){
+        Object.setPrototypeOf(this,_proto);
+        return _proto;
+    }
+})
+```
+- With ES6 there is no need to use `__proto__` getter/setter. See below code snippets
+```javascript
+function Foo(){
+    this.name = "Fooo";
+    Foo.prototype.sayMyName = function(){
+        console.log(`Hi there, my name is ${this.name}`);
+    }
+}
+
+Object.getPrototypeOf(f); //{sayMyName: ƒ, constructor: ƒ}
+Object.setPrototypeOf(f,Foo.prototype);
+```
+
+
 
 ***
 ### Property [[Get]] & [[Put]]
