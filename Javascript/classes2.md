@@ -47,7 +47,7 @@ function Foo(){
 Object.getPrototypeOf(f); //{sayMyName: ƒ, constructor: ƒ}
 Object.setPrototypeOf(f,Foo.prototype);
 ```
-
+<img src="images/prototype.png" alt="prototype mechanism in javascript"/>
 
 
 ***
