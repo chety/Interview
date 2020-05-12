@@ -3,10 +3,17 @@
 - There is no actual `class mechanism` in Javascript like other Object Oriented Languages(Java,C#,Python ...etc)
 - `Class` keyword came with ES6. It is just a syntactic sugar of `function`. When transpilers(babel) transpiles
 our code, it compiles classes to the corresponding functions.
+- A class is a blue-print. To actually get an object we can interact with, we must build (aka, "instantiate") something from the class. The end result of such "construction" is an object, typically called an "instance", which we can directly call methods on and access any public data properties from, as necessary.
+- This object is a **copy** of all the characteristics described by the class.
+
 - ***Favors composition over `class inheritance`***
 ***
-### Inheritance
-Another way to mimic inheritance in Js is `mixins`
+### Mixins
+ > JavaScript's object mechanism does not automatically perform copy behavior when you "inherit" or "instantiate". Plainly, there are no `"classes"` in JavaScript to instantiate, only objects. And objects don't get copied to other objects, they get linked together
+
+Another way to mimic inheritance in Js is `mixins`. Two different technique is provided below
+
+**First Way**
 ```javascript
 const mixins = (sourceObj,targetObj) => {    
     const target = JSON.parse(JSON.stringify(targetObj));
@@ -18,18 +25,18 @@ const mixins = (sourceObj,targetObj) => {
    return target;
 }
 
-function Vehicle(){
-    this.engine = 1;
-    this.amount = 123;
-    Vehicle.prototype.drive =  function(){
+const Vehicle = {
+    engine : 1,
+    amount : 123,
+    drive :  function(){
         this.amount -= 20;
         if(this.amount > 10){
             console.log(`Driving main Vehicle class with ${this.engine} engines`);
         }
         
-    }
+    },
 
-  Vehicle.prototype.fuel = function(amount){
+ fuel :function(amount){
         this.amount += amount;
     }
 }
@@ -42,12 +49,18 @@ const Bicycle = mixins(Vehicle,{
     }
 })
 
-Bicycle.drive()
-//->Driving main Vehicle class with 13 engines
+Bicycle.drive();//->Driving main Vehicle class with 13 engines
 
+/*
+Here Bicyle and Vehicle drive,fuel method are just the same reference(No separate function copy). There is
+no formal function copy, just the same reference. If you add a prop to a common function object
+(Functions are objects remember!) other function will be affected too*/
+Bicycle.drive.dummyProp = "Just setting dummy prop from Bicyle object";
+Vehicle.drive.dummpProp; //Just setting dummy prop from Bicyle object 
 ```
 ***
 
+**Second Way- Parasitic Inheritance**
 ```javascript
 function Vehicle(){
     this.engine = 1;
