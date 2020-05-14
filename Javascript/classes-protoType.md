@@ -1,11 +1,12 @@
-> What is the `[[ProtoType]]` mechanism in Javascript ?
+> What is the `[[ProtoType]]` mechanism in Javascript ? 💻 
 
 - [[ProtoType]] is simply a reference which points from child object to base object.
 - Objects in JavaScript have an internal property, denoted in the specification as [[Prototype]], 
  which is simply a reference to another object. Almost all objects are given a non-null value for this property, 
  at the time of their creation
- 
- 
+- `[[Prototype]]` mechanism is an internal link that exists on one object which references some other object.
+- This linkage is (primarily) exercised when a property/method reference is made against the first object, and no such property/method exists. In that case, the `[[Prototype]]` linkage tells the engine to look for the property/method on the linked-to object. In turn, if that object cannot fulfill the look-up, its `[[Prototype]]` is followed, and so on. This series of links between objects forms what is called the ***"prototype chain"***.
+
 ```javascript
 const obj = {a: 23};
 //create anotherObj and makes it's [[ProtoType]] to obj. 
@@ -55,7 +56,7 @@ Object.setPrototypeOf(f,Foo.prototype);
 
 
 ***
-### Property [[Get]] & [[Put]]
+### Property [[Get]] & [[Put]] 🌕
 **If a property does not exist on the object, then how is obj.a = "blabla" work under the hood?**
 
 1.If a normal data accessor property named foo is found anywhere higher on the `[[Prototype]] chain,
@@ -142,7 +143,7 @@ function Foo(){
 }
 Foo.prototype; //{constructor: ƒ}.Automatically created "prototype" property. Here constructor refers back to Foo function. 
 var a = new Foo();
-Object.getPrototypeOf(f) === Foo.prototype; //true
+Object.getPrototypeOf(a) === Foo.prototype; //true
 ```
 - When a is created by calling `new Foo()`, one of the things  that happens is that a gets an internal `[[Prototype]]`
 link to the object that `Foo.prototype` is pointing at.
