@@ -7,7 +7,10 @@
 - `Static constructors` are special constructor that works **first and only once**. They are used to initialize
 `static values` or any static operation that need to be executed before anything else. They are **parameterless** and can not take
 any **access modifiers**.
-***using System;
+***
+```c#
+
+using System;
 
 namespace Dummy
 {
