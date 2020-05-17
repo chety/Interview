@@ -91,9 +91,4 @@ namespace Dummy
         }
     }
 }
-
-
-```c#
-
-
 ```
