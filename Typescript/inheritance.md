@@ -27,6 +27,7 @@ export class Student extends Person {
 ```
 #### main.ts
 ```typescript
+import {Student} from "./person";
 const student = new Student("Alaan", "Isaac", 22, "10th");
 console.log(student.greetMe());
 ```
