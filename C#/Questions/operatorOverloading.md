@@ -25,9 +25,9 @@ namespace Dummy
             return !(user1 == user2);
         }
 
-        public static int operator +(User user1,User user2)
+        public static string operator +(User user1, User user2)
         {
-            return user1.Salary + user2.Salary;
+            return $"Sum of the salaries is -> {user1.Salary + user2.Salary}";
         }
 
         public override bool Equals(object obj)
@@ -72,10 +72,10 @@ namespace Dummy
 
             /*
             Normally "+" operator can not be applied to operands of type User objects but 
-            We override default behavior of the "+" operator. Our new behavior will sum
+            we override default behavior of the "+" operator. Our new behavior will sum
             salaries of the given users
             */
-            Console.WriteLine($"Sum of salaries: {user1 + user2}"); //30.000
+            Console.WriteLine($"Sum of salaries: {user1 + user2}"); //Sum of the salaries is -> 30.000
 
             Console.ReadLine();
         }
