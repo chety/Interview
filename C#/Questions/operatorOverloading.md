@@ -70,8 +70,11 @@ namespace Dummy
             Console.WriteLine($"Is Equal: {user1 == user2}"); //true
             Console.WriteLine($"Is Equal With Equals method: {user1.Equals(user2)}"); //true
 
-            //We override default behavior of the "+" operator. Our new behavior will sum
-            //salaries of the given users
+            /*
+            Normally "+" operator can not be applied to operands of type User objects but 
+            We override default behavior of the "+" operator. Our new behavior will sum
+            salaries of the given users
+            */
             Console.WriteLine($"Sum of salaries: {user1 + user2}"); //30.000
 
             Console.ReadLine();
