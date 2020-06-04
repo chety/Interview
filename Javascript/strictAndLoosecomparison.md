@@ -44,6 +44,41 @@ const mirov = {
     }
 }
 mirov == 49 ; //true
+```
 
-
+### Some Examples of loose equal(==) and explanations
+- When comparing with `NaN` , result is always `false`. Even `NaN`  is not equal with itself
+```javascript
+NaN == NaN ; //false
+0 == NaN; //false
+```
+- Comparing with `null` or `undefined` all the processes results `false`. Only undefined and null equals each other.
+```javascript
+"0" == null;			// false
+"0" == undefined;		// false
+null == undefined //true
+```
+- If one side is `boolean` value, it will always converted to `number`. **false** -> 0, **true** -> 1
+```javascript
+/*
+  First false will be converted to number 0. Our comparasion is: "0" == 0. Since types are different, strict equal will perform
+  type coercion. If string and number is compared, string value will be converted to number. "0" will be converted to number 0.
+  Now our comparasion is 0 == 0. That is true of course
+*/
+"0" == false; // true
+"1" == true; //true
+```
+- When comparing `literal values` with objects(array,function ...etc), object `ToPrimitive` abstract operation will be called. 
+    1- `valueOf()` method of object will be called. If the result is `primitive`, then compare literal value with this result.
+    Otherwise continue with second option
+    2- `toString()` method of object will be called. Same operation  with `valueOf()` will be held.
+    3- If none of operation above applied, return false
+    
+```javascript
+/*
+  Since [1] is an object, first ToPrimitive operation will be called. [1].valueOf() results [1]. So it is not primitive, then
+  engine will call [1].toString() which is "1". So our comparasion is 1 == "1"; Types are different. Coercion will take place,
+  "1" will be converted to 1. So 1 == 1 ? it is true obviously
+*/
+1 == [1]; //true
 ```
