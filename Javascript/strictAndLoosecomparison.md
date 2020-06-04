@@ -52,27 +52,27 @@ mirov == 49 ; //true
 NaN == NaN ; //false
 0 == NaN; //false
 ```
-- Comparing with `null` or `undefined` all the processes results `false`. Only undefined and null equals each other.
+- Comparing with `null` or `undefined` all the processes results `false`. Only `undefined and null` equals _each other._
 ```javascript
 "0" == null;			// false
-"0" == undefined;		// false
+0 == undefined;		// false
 null == undefined //true
 ```
 - If one side is `boolean` value, it will always converted to `number`. **false** -> 0, **true** -> 1
 ```javascript
 /*
-  First false will be converted to number 0. Our comparasion is: "0" == 0. Since types are different, strict equal will perform
+  First false will be converted to number 0. Our comparasion is: "0" == 0. Since types are different, loose equal will perform
   type coercion. If string and number is compared, string value will be converted to number. "0" will be converted to number 0.
   Now our comparasion is 0 == 0. That is true of course
 */
 "0" == false; // true
 "1" == true; //true
 ```
-- When comparing `literal values` with objects(array,function ...etc), object `ToPrimitive` abstract operation will be called. 
-    1- `valueOf()` method of object will be called. If the result is `primitive`, then compare literal value with this result.
+- When comparing `literal values` with objects(array,function ...etc), object `ToPrimitive` abstract operation will be called.
+    - `valueOf()` method of object will be called. If the result is `primitive`, then compare literal value with this result.
     Otherwise continue with second option
-    2- `toString()` method of object will be called. Same operation  with `valueOf()` will be held.
-    3- If none of operation above applied, return false
+    - `toString()` method of object will be called. Same operation  with `valueOf()` will be held.
+    - If none of operation above applied, return false
     
 ```javascript
 /*
