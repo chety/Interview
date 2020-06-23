@@ -6,6 +6,7 @@ it will be moved to the ***Event Queue***. Aka `macrotask queue`.
 - In `Event queue`, **Event Loop** always checks if `execution stack` is empty. If it is empty, it will grap `first value` from queue to the stack. Because `Queue` 
 is _FIFO_. Aka **First In First Out**
 - If your promise is resolved, it's value will be in ***Microstask Queue***. It has _higher_ precedence from _event queue_. 
+- Concurrency is about dealing with lots of things at once. Parallelism is about doing lots of things at once.(https://blog.golang.org/waza-talk)
 
 
 ```javascript
