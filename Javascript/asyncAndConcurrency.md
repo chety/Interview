@@ -1,3 +1,5 @@
+>Disclaimer: **Javascript** is a _single threaded_ language. That means only _1 execution stack_, _1 thing at a time_. _Asyncronous programming_ is achieved via **WebAPI** which is provided by the _web browsers_. **WebAPI** includes `setTimeout`,`setInterval`, `DOM event handlers`  ...etc
+
 - **Paralellism** is actually doing multiple things _simultaneously_. It is a process of mixture _hardware and software_. Your system has to have _multiple cores__ 
 to do paralel executing.
 - **Concurrency** is when two or more tasks can start, run, and complete in overlapping time periods. It doesn't necessarily mean they'll ever both be running at the same instant. For example, _multitasking on a single-core machine_
