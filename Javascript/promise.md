@@ -4,6 +4,54 @@
 - Instead of passing our functions as `callbacks` to other functions, we have **promise aware** functions that return promise. Then we can take actions
 (aka execute our functions)
 
+### Promise.resolve
+- `Promise.resolve()` is used mainly for **2** things.
+  - When we want to immediately resolve a promise
+  ```javascript
+  const resolvedPromise1 = new Promise((resolve,reject) => {
+    resolve("Amokachi");
+  })
+
+  const resolvedPromise2 = Promise.resolve("Amokachi");
+
+  resolvedPromise1; // -> Promise {<resolved>: "Amokachi"}
+  resolvedPromise2; // ->  Promise {<resolved>: "Amokachi"}
+  ```
+  - If we want to convert a `thennable object` or a `primitive` value to a `genuine promise`
+  ```javascript
+  
+  const fullfilledThen = {
+    then: function(callback){
+        callback(49);
+    }
+  }
+ 
+  Promise.resolve(fullfilledThen)
+  .then(val => console.log("Then clause. Val*",val"))
+  .catch(err => console.log("Catch clause. Err*",err))
+  .finally(_ => console.log("Do resource cleaning"))
+  
+  // Then clause. Val* 49
+  // Do resource cleaning
+ 
+  const rejectedThen = {
+    then: function(callback,errorCallback){
+        errorCallback("Oops")
+    }
+  }
+
+  Promise.resolve(rejectedThen) //Convert thennable object to genuine Promise but it is a REJECTED promise
+  .then(val => console.log("Then clause. Val*",val))
+  .catch(err => {
+   console.log("Catch clause. Err*",err);
+   return "Catch Promise Value";})         
+  .finally(_ => console.log("Do resource cleaning"))
+ 
+  // Catch clause. Err* Oops
+  // Do resource cleaning
+  // Promise {<resolved>: "Catch Promise Value"} 
+  ```
+
 ### Promise.all
 - `Promise.all(...)` takes an array of promises, executes them in _parallel_ and returns their `resolved` values in corresponding order.
 - If any promise is `rejected` then it will be rejected immediately with one `single error value`
