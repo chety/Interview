@@ -59,3 +59,65 @@ Promise.race([count(100),timeout(0,true)])
 //Count ended 
 !!!Attention. If our promise even rejected, our count function continues to work.
 ```
+
+### Promise Polyfill
+ > `Promise.first([...])` takes an array of promises and returns `first resolved` promise. If all the promises are rejected, it rejects with all the promises errors
+ joined with `#`
+ 
+ ```javascript
+ if(!Promise.first){
+ Promise.first = function(promises){        
+         const errors = [];
+         return new Promise((resolve,reject) => {               
+                for(const promise of promises){
+                    //convert to genuine promise.
+                    //You might pass thenable object or immediate value to pass
+                    Promise.resolve(promise) 
+                    .then(val => {                        
+                        return resolve(val);
+                    })
+                    .catch(err => {
+                        errors.push(err);
+                    })
+                    .finally(_ => {
+                        if(errors.length === promises.length){
+                          return reject(errors.join("#"));
+                        }
+                    })
+                }                               
+
+})
+}
+ }
+ 
+ 
+ const timeout = function(delay,message,isReject = false){
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            return isReject ? reject(message) : resolve(message);
+        },delay)
+    })
+}
+
+console.time("first");
+Promise.first([timeout(2000,"first promise",true), timeout(4000,"second promise",true), timeout(8000,"third promise",false)])
+.then(val => console.log(`Then clause. Val* ${val}`))
+.catch(err => console.log(`catch clause. Err* ${err}`))
+.finally(_ => console.timeEnd("first"))
+
+ //Promise {<pending>}
+// Then clause. Val* third promise -> Because only resolved promise is third promise
+// first: 8001.497802734375ms
+
+console.time("first");
+Promise.first([timeout(2000,"first promise",true), timeout(4000,"second promise",true), timeout(8000,"third promise",true)])
+.then(val => console.log(`Then clause. Val* ${val}`))
+.catch(err => console.log(`catch clause. Err* ${err}`))
+.finally(_ => console.timeEnd("first"))
+ 
+//Promise {<pending>}
+// catch clause. Err* first promise#second promise#third promise  -> All promises are rejected, return their errors
+// first: 8001.68798828125ms
+
+ ```
+
