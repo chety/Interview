@@ -1,0 +1,22 @@
+div.table-container{
+   margin: 10px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+/*tr:nth-of-type(even){
+    background-color: rgba(206,199,219,0.62) ;
+} */
+tr> th {
+    height: 30px;
+    background-color: #dddddd;
+}
+td{
+    text-align: center;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
