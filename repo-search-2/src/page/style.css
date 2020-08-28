@@ -1,0 +1,18 @@
+div.common{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    font-family: Roboto, "Roboto Light", "Roboto Thin", Arial;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 15px;
+}
+
+div.header {
+    background: rgba(13, 194, 216, 0.62);
+    font-size: 1.5em;
+}
+
+div.repo-container {
+    flex-direction: column;
+}

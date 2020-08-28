@@ -1,0 +1,5 @@
+img.avatar {
+    border: 5px solid black;
+    width: 80px;
+    border-radius: 50%;
+}
