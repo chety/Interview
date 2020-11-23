@@ -3,6 +3,19 @@
 - When you enumurate over a collection/list/array or `object`(_if you define it's iterator_) with `for..of`, you actually call corresponding item iterator
 - Iterator object is a regular javascript object which has a `next()` function that returns `{value:...,done:boolean}`
 - When you traverse over an array with `for..of`, under the hood javascript calls array builtin `[Symbol.iterator]()` function which basically returns a `iterator` object. 
+- Basic iterator definition is like below
+    ```js
+        interface IteratorResult {
+          done: boolean;
+          value: any;
+        }
+        interface Iterator {
+          next(): IteratorResult;
+        }
+        interface Iterable {
+          [Symbol.iterator](): Iterator
+        }
+    ```
 ***
 ```javascript
 const numbers = [1,2,3];
@@ -60,5 +73,25 @@ function getNumbers(){
     }
     return numbers;
 }
+
+const fibonacci = {
+    [Symbol.iterator](){
+        let prev = 0;
+        let curr = 1;
+        return {        
+            next(){
+                [prev,curr] = [curr,prev + curr];
+                return {value: curr, done:false}
+            }
+        }        
+    }
+}
+for(const fibo of fibonacci){
+    if(fibo > 100){
+        break;
+    }
+    console.log(fibo);
+}
+// -> 1,2,3,5,8,13,21,34,55,89
 
 ```
