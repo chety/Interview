@@ -1,6 +1,7 @@
 > **Generators** are a special kind of function, that can be play/paused at a given time.
 
-- Generators do not execute top-to-bottom immediately, instead they return a **generator**. 
+- _Generators_ do not execute top-to-bottom immediately, instead they return a **generator**. 
+- _Generators_ is a subtype of _iterators_
 - Then if we call `next()` function of the `returned generator`, our function starts to work until it sees a `yield` statement.
 
   - ```javascript
