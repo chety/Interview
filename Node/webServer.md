@@ -39,6 +39,22 @@ server.get('/products/:id/orders/:orderId', (req, res) => {
   res.status(200).jsonp({ id: 33, product: 'laptop' });
 });
 
+//http://localhost:3000/products?page=3&pageSize=5
+//Above query means i want all the products divided into pages that each page has 5 elements.
+//then give me page 3 products
+server.get('/products', (req, res) => {
+  const page = +req.query.page;
+  const pageSize = +req.query.pageSize;
+  if (page && pageSize) {
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    res.json(products.slice(start, end));
+  }else{
+    res.json(products);
+  }
+});
+
+
 //post is used to insert data
 server.post('/persons', (req, res) => {
   console.log('Body:', req.body);
